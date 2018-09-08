@@ -6,6 +6,6 @@ Feature: Version
 
   Scenario: Show the current version of sdkman
     Given the internet is reachable
-    And the sdkman version is "3.2.1"
+    And the sdkman version is "6.0.0"
     When I enter "sdk version"
-    Then I see "SDKMAN 3.2.1"
+    Then I see "SDKMAN 6.0.0"

@@ -2,7 +2,7 @@ package cmds
 
 import "fmt"
 
-var version = "3.2.1"
+var version = "6.0.0"
 
 func Version() (string, error) {
 	out := fmt.Sprintf("SDKMAN %s", version)
