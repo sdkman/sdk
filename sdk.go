@@ -2,24 +2,37 @@ package main
 
 import (
 	"fmt"
+	"github.com/pkg/errors"
 	"os"
-	"sdkman/cmds"
+	"sdk/cmds"
 )
 
 func main() {
-	sdk(os.Args)
+	err := sdk(os.Args[1:])
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
 
 func sdk(args []string) error {
-	var out string
-	switch args[0] {
-	case "version":
-		out, _ = cmds.Version()
-	default:
-		out = "No such command"
+
+	if len(args) == 0 {
+		return errors.New("No command specified")
+
+	} else {
+
+		var command = args[0]
+		var output string
+
+		switch command {
+		case "version":
+			output, _ = cmds.Version()
+		default:
+			output = "No such command: " + command
+		}
+
+		fmt.Println(output)
+		return nil
 	}
-
-	fmt.Println(out)
-
-	return nil
 }
