@@ -5,11 +5,10 @@ import (
 	"github.com/DATA-DOG/godog"
 	"github.com/kami-zh/go-capturer"
 	"log"
-	"sdk/cli"
 	"strings"
 )
 
-var Actual string
+var actual string
 
 func theInternetIsReachable() error {
 	//Internet availability not relevant yet..
@@ -24,21 +23,17 @@ func iEnter(command string) error {
 	commandLine := strings.Split(command, " ")
 	args := commandLine[1:]
 
-	out := capturer.CaptureStdout(func() {
-		cli.Sdk(args)
-	})
-
-	Actual = strings.TrimSuffix(out, "\n")
-
-	log.Printf("Actual: %s", Actual)
+	actual = strings.TrimSuffix(capturer.CaptureStdout(func() {
+		sdk(args)
+	}), "\n")
 
 	return nil
 }
 
 func iSee(expected string) error {
 
-	if expected != Actual {
-		return fmt.Errorf("expected %s but was %s", expected, Actual)
+	if actual != expected {
+		return fmt.Errorf("expected %s but was %s", expected, actual)
 	}
 	return nil
 }
