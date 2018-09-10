@@ -11,6 +11,13 @@ The benefits of rewriting it in Go can be summarised as follows:
 * allows rethinking of some core behaviours of the current implementation of SDKMAN
 * allows for more collaboration and contribution from the community
 
+### Living Documentation
+
+SDKMAN's development is always driven by tests. More than that, we use Cucumber to describe the behaviour of the CLI in plain English. We do so using Cucumber features, all of which can be found under the [_features/_](features) folder of this repo. These Features form a body of Living Documentation that evolves with the software implementation.
+
+The Cucumber Features are backed by Step Definitions, snippets of matched code that are invoked in order as the Cucumber Feature are 
+
+
 ### Development
 
 #### Prerequisites
