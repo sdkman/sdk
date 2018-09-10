@@ -15,6 +15,11 @@ func theInternetIsReachable() error {
 	return nil
 }
 
+func anInitialisedEnvironment() error {
+	//Initialise the ~/.sdkman folder here
+	return nil
+}
+
 func theSdkmanVersionIs(version string) error {
 	return nil
 }
@@ -40,6 +45,7 @@ func iSee(expected string) error {
 
 func VersionFeatureContext(s *godog.Suite) {
 	s.Step(`^the internet is reachable$`, theInternetIsReachable)
+	s.Step(`^an initialised environment$`, anInitialisedEnvironment)
 	s.Step(`^the sdkman version is "(.*)"$`, theSdkmanVersionIs)
 	s.Step(`^I enter "(.*)"$`, iEnter)
 	s.Step(`^I see "(.*)"$`, iSee)
