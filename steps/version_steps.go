@@ -1,9 +1,10 @@
-package main
+package steps
 
 import (
 	"fmt"
 	"github.com/DATA-DOG/godog"
 	"github.com/kami-zh/go-capturer"
+	"sdk/cli"
 	"strings"
 )
 
@@ -23,7 +24,7 @@ func iEnter(command string) error {
 	args := commandLine[1:]
 
 	actual = strings.TrimSuffix(capturer.CaptureStdout(func() {
-		sdk(args)
+		cli.Sdk(args)
 	}), "\n")
 
 	return nil

@@ -5,6 +5,7 @@ import (
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/colors"
 	"os"
+	"sdk/steps"
 	"testing"
 )
 
@@ -20,7 +21,7 @@ func TestMain(m *testing.M) {
 	opt.Paths = flag.Args()
 
 	status := godog.RunWithOptions("godogs", func(s *godog.Suite) {
-		VersionFeatureContext(s)
+		steps.VersionFeatureContext(s)
 	}, opt)
 
 	if st := m.Run(); st > status {
