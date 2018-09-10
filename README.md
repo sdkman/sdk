@@ -5,29 +5,30 @@ This repo is home to the next generation of SDKMAN Command Line Interface writte
 The benefits of rewriting it in Go can be summarised as follows:
 * no more dependency on the shifting sands of bash/ZSH as foundation
 * allows natively compiled binaries for all popular architecture
-* easier testing support through [Godog](https://github.com/DATA-DOG/godog), a version of [Cucumber](https://cucumber.io/) written in Go.
-* statically typed compiled language, allowing us to catch bugs earlier during development
-* allows us to rethink some core behaviours of the current implementation of SDKMAN
+* easier acceptance testing support through [Godog](https://github.com/DATA-DOG/godog), a version of [Cucumber](https://cucumber.io/) written in Go
+* easier unit testing support through [testify](https://github.com/stretchr/testify)
+* statically typed compiled language, allowing bugs to be caught earlier during development
+* allows rethinking of some core behaviours of the current implementation of SDKMAN
 * allows for more collaboration and contribution from the community
 
 ### Development
 
 #### Prerequisites
 
-Ensure that you have [installed Go](https://golang.org/doc/install) on your system.
+Ensure that [Go is installed](https://golang.org/doc/install) on your system.
 
-Optionally, you can install Godog for running the Cucumber specifications directly:
+Optionally, install Godog for running the Cucumber specifications directly:
 
     $ go get github.com/DATA-DOG/godog/cmd/godog
 
 #### Running the tests
 
-To run all the tests using Go's builtin test support (unit and cukes):
+To run all tests using Go's builtin test support (unit and cukes):
 
     $ cd path/to/the/repo/sdk
     $ go test --godog.format=pretty
 
-If you installed Godog earlier, you can run the cukes directly in isolation with the following command:
+If Godog was installed earlier, run the Cucumber specs directly in isolation with the following command:
 
     $ godog
 
