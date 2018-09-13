@@ -21,6 +21,8 @@ func TestMain(m *testing.M) {
 	opt.Paths = flag.Args()
 
 	status := godog.RunWithOptions("godogs", func(s *godog.Suite) {
+		steps.CliContext(s)
+		steps.EnvContext(s)
 		steps.VersionFeatureContext(s)
 	}, opt)
 
