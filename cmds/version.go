@@ -1,10 +1,12 @@
 package cmds
 
-import "fmt"
+import (
+	"sdk/txt"
+)
 
 var version = "6.0.0"
 
 func Version() (string, error) {
-	out := fmt.Sprintf("SDKMAN %s", version)
+	out := txt.Info("SDKMAN %s", version)
 	return out, nil
 }

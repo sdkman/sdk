@@ -4,6 +4,7 @@ import (
 	"flag"
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/colors"
+	"github.com/fatih/color"
 	"os"
 	"sdk/steps"
 	"testing"
@@ -17,6 +18,9 @@ func init() {
 
 // integrate godog with `go test`
 func TestMain(m *testing.M) {
+
+	color.NoColor = true // disables colorized output
+
 	flag.Parse()
 	opt.Paths = flag.Args()
 

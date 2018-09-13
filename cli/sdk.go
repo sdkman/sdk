@@ -4,12 +4,13 @@ import (
 	"errors"
 	"fmt"
 	"sdk/cmds"
+	"sdk/txt"
 )
 
 func Sdk(args []string) (int, error) {
 
 	if len(args) == 0 {
-		return 1, errors.New("No command specified")
+		return 1, errors.New(txt.Error("No command specified."))
 
 	} else {
 
@@ -20,7 +21,7 @@ func Sdk(args []string) (int, error) {
 		case "version":
 			output, _ = cmds.Version()
 		default:
-			output = "No such command: " + command
+			output = txt.Error("No such command: %s", command)
 		}
 
 		fmt.Println(output)
