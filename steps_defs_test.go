@@ -9,13 +9,13 @@ import (
 	"testing"
 )
 
-// for `go test` integration
 var opt = godog.Options{Output: colors.Colored(os.Stdout)}
 
 func init() {
 	godog.BindFlags("godog.", flag.CommandLine, &opt)
 }
 
+// integrate godog with `go test`
 func TestMain(m *testing.M) {
 	flag.Parse()
 	opt.Paths = flag.Args()
