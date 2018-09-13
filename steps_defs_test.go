@@ -19,7 +19,7 @@ func init() {
 // integrate godog with `go test`
 func TestMain(m *testing.M) {
 
-	color.NoColor = true // disables colorized output
+	color.NoColor = true
 
 	flag.Parse()
 	opt.Paths = flag.Args()
