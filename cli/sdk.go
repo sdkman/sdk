@@ -6,10 +6,10 @@ import (
 	"sdk/cmds"
 )
 
-func Sdk(args []string) error {
+func Sdk(args []string) (int, error) {
 
 	if len(args) == 0 {
-		return errors.New("No command specified")
+		return 1, errors.New("No command specified")
 
 	} else {
 
@@ -24,6 +24,6 @@ func Sdk(args []string) error {
 		}
 
 		fmt.Println(output)
-		return nil
+		return 0, nil
 	}
 }

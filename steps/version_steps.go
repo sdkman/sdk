@@ -8,7 +8,9 @@ import (
 	"strings"
 )
 
-var actual string
+var stdout string
+
+var exitCode int
 
 func theInternetIsReachable() error {
 	//Internet availability not relevant yet..
@@ -20,7 +22,7 @@ func anInitialisedEnvironment() error {
 	return nil
 }
 
-func theSdkmanVersionIs(version string) error {
+func theSdkmanVersionIs(_ string) error {
 	return nil
 }
 
@@ -28,8 +30,8 @@ func iEnter(command string) error {
 	commandLine := strings.Split(command, " ")
 	args := commandLine[1:]
 
-	actual = strings.TrimSuffix(capturer.CaptureStdout(func() {
-		cli.Sdk(args)
+	stdout = strings.TrimSuffix(capturer.CaptureStdout(func() {
+		exitCode, _ = cli.Sdk(args)
 	}), "\n")
 
 	return nil
@@ -37,8 +39,16 @@ func iEnter(command string) error {
 
 func iSee(expected string) error {
 
-	if actual != expected {
-		return fmt.Errorf("expected %s but was %s", expected, actual)
+	if stdout != expected {
+		return fmt.Errorf("expected %s but was %s", expected, stdout)
+	}
+	return nil
+}
+
+func theExitCodeIs(expected int) error {
+
+	if exitCode != expected {
+		return fmt.Errorf("expected %d but was %d", expected, exitCode)
 	}
 	return nil
 }
@@ -49,4 +59,5 @@ func VersionFeatureContext(s *godog.Suite) {
 	s.Step(`^the sdkman version is "(.*)"$`, theSdkmanVersionIs)
 	s.Step(`^I enter "(.*)"$`, iEnter)
 	s.Step(`^I see "(.*)"$`, iSee)
+	s.Step(`^the exit code is (\d+)$`, theExitCodeIs)
 }
