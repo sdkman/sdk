@@ -21,7 +21,7 @@ func Sdk(args []string) (int, error) {
 		case "version":
 			output, _ = cmds.Version()
 		default:
-			output = txt.Error("No such command: %s", command)
+			return 1, errors.New(txt.ErrorF("No such command: %s", command))
 		}
 
 		fmt.Println(output)

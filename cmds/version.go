@@ -7,6 +7,6 @@ import (
 var version = "6.0.0"
 
 func Version() (string, error) {
-	out := txt.Info("SDKMAN %s", version)
+	out := txt.InfoF("SDKMAN %s", version)
 	return out, nil
 }

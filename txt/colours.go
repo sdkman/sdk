@@ -2,10 +2,16 @@ package txt
 
 import "github.com/fatih/color"
 
-var Info = color.New(color.FgHiYellow).SprintfFunc()
+var yellow = color.New(color.FgHiYellow)
+var Info = yellow.SprintFunc()
+var InfoF = yellow.SprintfFunc()
 
-var Error = color.New(color.FgRed).SprintfFunc()
+var red = color.New(color.FgRed)
+var Error = red.SprintFunc()
+var ErrorF = red.SprintfFunc()
 
-var Success = color.New(color.FgGreen).SprintfFunc()
+var green = color.New(color.FgGreen)
+var Success = green.SprintFunc()
+var SuccessF = green.SprintfFunc()
 
-var Broadcast = color.New(color.FgCyan).SprintfFunc()
+var BroadcastF = color.New(color.FgCyan).SprintfFunc()
