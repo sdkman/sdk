@@ -1,4 +1,4 @@
-package steps
+package step
 
 import (
 	"github.com/DATA-DOG/godog"

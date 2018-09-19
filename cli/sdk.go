@@ -3,7 +3,7 @@ package cli
 import (
 	"errors"
 	"fmt"
-	"sdk/cmds"
+	"sdk/cmd"
 	"sdk/txt"
 )
 
@@ -19,7 +19,7 @@ func Sdk(args []string) (int, error) {
 
 		switch command {
 		case "version":
-			output, _ = cmds.Version()
+			output, _ = cmd.Version()
 		default:
 			return 1, errors.New(txt.ErrorF("No such command: %s", command))
 		}

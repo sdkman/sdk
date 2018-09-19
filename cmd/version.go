@@ -1,4 +1,4 @@
-package cmds
+package cmd
 
 import (
 	"sdk/txt"
