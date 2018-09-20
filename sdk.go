@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"os"
 	"sdk/cli"
+	"sdk/env"
 )
 
 func main() {
-	var sdkmanDir string
-	if sdkmanDir = os.Getenv("SDKMAN_DIR"); sdkmanDir == "" {
-		sdkmanDir = "$HOME/.sdkman"
-	}
+
+	sdkmanDir := env.SdkmanDir()
 
 	exit, err := cli.Sdk(os.Args[1:], sdkmanDir)
 	if err != nil {
