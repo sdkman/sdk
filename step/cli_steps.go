@@ -8,12 +8,15 @@ import (
 	"strings"
 )
 
+var stdout string
+var exitCode int
+
 func iEnter(command string) error {
 	commandLine := strings.Split(command, " ")
 	args := commandLine[1:]
 
 	stdout = strings.TrimSuffix(capturer.CaptureStdout(func() {
-		exitCode, _ = cli.Sdk(args)
+		exitCode, _ = cli.Sdk(args, sdkmanDir)
 	}), "\n")
 
 	return nil
