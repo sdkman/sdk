@@ -5,25 +5,18 @@ import (
 	"os"
 )
 
-var varFolder = "/var/version"
+var varFile = "/var/version"
 
 // SetVersion writes the sdkman version
 func SetVersion(version string, sdkmanDir string) {
-
-	//open existing file in write-only append mode
-	versionFile := sdkmanDir + varFolder
-	f, err := os.OpenFile(versionFile, os.O_WRONLY, os.ModeAppend)
-	check(err)
-	defer f.Close()
-
-	//clobber default version with `version`
-	_, err = f.WriteAt([]byte(version), 0)
+	versionFile := sdkmanDir + varFile
+	err := ioutil.WriteFile(versionFile, []byte(version), os.ModeAppend)
 	check(err)
 }
 
 // GetVersion reads the sdkman version
 func GetVersion(sdkmanDir string) string {
-	version, err := ioutil.ReadFile(sdkmanDir + varFolder)
+	version, err := ioutil.ReadFile(sdkmanDir + varFile)
 	check(err)
 	return string(version)
 }

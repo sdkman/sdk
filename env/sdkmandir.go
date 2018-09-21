@@ -5,6 +5,10 @@ import (
 	"os/user"
 )
 
+var sdkmanDirEnv = "SDKMAN_DIR"
+
+var baseFolder = ".sdkman"
+
 // SdkmanDir infers the sdkman directory based on the presence of the SDKMAN_DIR
 // environment variable. If not present, we use `$HOME/.sdkman`.
 func SdkmanDir() string {
@@ -13,7 +17,7 @@ func SdkmanDir() string {
 		u, err := user.Current()
 		check(err)
 
-		sdkmanDir = u.HomeDir + "/.sdkman"
+		sdkmanDir = u.HomeDir + "/" + baseFolder
 	}
 
 	return sdkmanDir
