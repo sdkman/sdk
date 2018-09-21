@@ -19,7 +19,7 @@ func Sdk(args []string, sdkmanDir string) (int, error) {
 
 		switch command {
 		case "version":
-			version := env.ReadVersion(sdkmanDir)
+			version := env.GetVersion(sdkmanDir)
 			output = cmd.Version(version)
 		default:
 			return 1, errors.New(txt.ErrorF("No such command: %s", command))

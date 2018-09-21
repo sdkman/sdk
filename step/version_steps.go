@@ -6,7 +6,7 @@ import (
 )
 
 func theSdkmanVersionIs(version string) error {
-	env.WriteVersion(version, sdkmanDir)
+	env.SetVersion(version, sdkmanDir)
 	return nil
 }
 
