@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sdk/env"
 )
 
 var tmpFolder = "/tmp"
@@ -12,7 +13,6 @@ var prefix = "sdkman-"
 
 var sdkmanDir string
 var varDir string
-var versionFile string
 
 func theInternetIsReachable() error {
 	//Internet availability not relevant yet..
@@ -29,13 +29,7 @@ func anInitialisedEnvironment() error {
 	err = os.Mkdir(varDir, 0755)
 	check(err)
 
-	versionFile = varDir + "/version"
-	f, err := os.Create(versionFile)
-	check(err)
-	defer f.Close()
-
-	_, err = f.WriteString("0.0.1")
-	check(err)
+	env.SetVersion("0.0.1", sdkmanDir)
 
 	return nil
 }
