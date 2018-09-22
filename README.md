@@ -1,5 +1,7 @@
 # SDKMAN! Golang CLI
 
+[![Build Status](https://travis-ci.org/sdkman/sdk.svg?branch=master)](https://travis-ci.org/sdkman/sdk)
+
 This repo is home to the next generation of SDKMAN Command Line Interface written in [Go](https://golang.org/). It marks a complete rewrite of the original CLI written in [bash](https://www.gnu.org/software/bash/).
 
 The benefits of rewriting it in Go can be summarised as follows:
