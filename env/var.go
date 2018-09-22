@@ -10,7 +10,7 @@ var varFile = "/var/version"
 // SetVersion writes the sdkman version
 func SetVersion(version string, sdkmanDir string) {
 	versionFile := sdkmanDir + varFile
-	err := ioutil.WriteFile(versionFile, []byte(version), os.ModeAppend)
+	err := ioutil.WriteFile(versionFile, []byte(version), os.ModePerm)
 	check(err)
 }
 
