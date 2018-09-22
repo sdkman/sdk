@@ -8,6 +8,8 @@ import (
 	"sdk/txt"
 )
 
+// Sdk is the entry point used for delegating to the individual commands
+// as well as performing and propagating error handling.
 func Sdk(args []string, sdkmanDir string) (int, error) {
 
 	if len(args) == 0 {
