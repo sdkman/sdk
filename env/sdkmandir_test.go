@@ -1,10 +1,11 @@
 package env
 
 import (
+	"github.com/mitchellh/go-homedir"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
-	"os/user"
+	"path/filepath"
 	"testing"
 )
 
@@ -13,9 +14,9 @@ func TestSdkmanDirNoEnvVar(t *testing.T) {
 
 	actual := SdkmanDir()
 
-	u, err := user.Current()
+	homeDir, err := homedir.Dir()
 	check(err)
-	expected := u.HomeDir + "/" + baseFolder
+	expected := filepath.Join(homeDir, baseFolder)
 
 	assert.Equal(t, expected, actual, "no sdkman dir default value when SDKMAN_DIR env var unset")
 }
