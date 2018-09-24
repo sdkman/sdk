@@ -1,12 +1,13 @@
 package env
 
 import (
-	"github.com/mitchellh/go-homedir"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/mitchellh/go-homedir"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSdkmanDirNoEnvVar(t *testing.T) {
