@@ -7,7 +7,7 @@ sudo: false
 install: true
 
 script:
-- env GO111MODULE=on go test
+- env GO111MODULE=on go test --godog.tags=~wip
 - env GO111MODULE=on go test -v sdk/cli
 - env GO111MODULE=on go test -v sdk/env
 - env GO111MODULE=on go build
