@@ -5,6 +5,8 @@ Feature: Pull
   I want SDKMAN to be up-to-date
   So that I can access the latest SDKs
 
+  https://github.com/sdkman/sdk/issues/4
+
   Versions of SDKMAN prior to 6.0.0 were very reliant on being connected to the internet. For most this has not
   been a problem, but for those with limited bandwidth or unreliable internet connectivity this has rendered the
   CLI unusable.
