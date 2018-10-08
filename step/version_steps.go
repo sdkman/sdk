@@ -5,11 +5,11 @@ import (
 	"sdk/env"
 )
 
-func theSdkmanVersionIs(version string) error {
+func theInstalledSdkmanVersionIs(version string) error {
 	env.SetVersion(version, sdkmanDir)
 	return nil
 }
 
 func VersionFeatureContext(s *godog.Suite) {
-	s.Step(`^the sdkman version is "(.*)"$`, theSdkmanVersionIs)
+	s.Step(`^the installed sdkman version is "(.*)"$`, theInstalledSdkmanVersionIs)
 }
