@@ -7,6 +7,8 @@ import (
 	"github.com/mitchellh/go-homedir"
 )
 
+var sdkmanServiceEnv = "SDKMAN_API"
+
 var sdkmanDirEnv = "SDKMAN_DIR"
 
 var baseFolder = ".sdkman"
@@ -14,7 +16,7 @@ var baseFolder = ".sdkman"
 // SdkmanDir infers the sdkman directory based on the presence of the SDKMAN_DIR
 // environment variable. If not present, we use `$HOME/.sdkman`.
 func SdkmanDir() string {
-	sdkmanDir := os.Getenv("SDKMAN_DIR")
+	sdkmanDir := os.Getenv(sdkmanDirEnv)
 	if 0 < len(sdkmanDir) {
 		return sdkmanDir
 	}
@@ -22,4 +24,13 @@ func SdkmanDir() string {
 	check(err)
 
 	return filepath.Join(d, baseFolder)
+}
+
+func SdkmanApi() string {
+	sdkmanApi := os.Getenv(sdkmanServiceEnv)
+	if 0 < len(sdkmanApi) {
+		return sdkmanApi
+	}
+
+	return "https://api.sdkman.io/3"
 }

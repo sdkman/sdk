@@ -33,3 +33,22 @@ func TestSdkmanDirEnvVarSet(t *testing.T) {
 
 	assert.Equal(t, expected, actual, "sdkman dir value not read from SDKMAN_DIR env var")
 }
+
+func TestSdkmanApiNoEnvVar(t *testing.T) {
+	os.Unsetenv(sdkmanServiceEnv)
+
+	expected := "https://api.sdkman.io/3"
+
+	actual := SdkmanApi()
+
+	assert.Equal(t, expected, actual, "no sdkman api default value when SDKMAN_API env var unset")
+}
+
+func TestSdkmanApiEnvVarSet(t *testing.T) {
+	expected := "https://api.sdkman.io/2"
+	os.Setenv(sdkmanServiceEnv, expected)
+
+	actual := SdkmanApi()
+
+	assert.Equal(t, expected, actual)
+}
