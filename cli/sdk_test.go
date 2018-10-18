@@ -6,13 +6,15 @@ import (
 )
 
 func TestSdkWithNoArgs(t *testing.T) {
-	code, err := Sdk([]string{}, "")
+	noArgs := []string{}
+	code, err := Sdk(noArgs, "", "")
 	assert.Equal(t, 1, code, "Expected return code 1")
 	assert.Error(t, err, "Expected error for no args invocation of Sdk()")
 }
 
 func TestSdkWithInvalidArgs(t *testing.T) {
-	code, err := Sdk([]string{"invalid"}, "")
+	invalidArg := []string{"invalid"}
+	code, err := Sdk(invalidArg, "", "")
 	assert.Equal(t, 1, code, "Expected return code 1")
 	assert.Error(t, err, "Expected error for invalid command invocation of Sdk()")
 }

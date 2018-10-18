@@ -16,7 +16,7 @@ func iEnter(command string) error {
 	args := commandLine[1:]
 
 	stdout = strings.TrimSuffix(capturer.CaptureStdout(func() {
-		exitCode, _ = cli.Sdk(args, sdkmanDir)
+		exitCode, _ = cli.Sdk(args, sdkmanDir, sdkmanApi)
 	}), "\n")
 
 	return nil
@@ -24,8 +24,8 @@ func iEnter(command string) error {
 
 func iSee(expected string) error {
 
-	if stdout != expected {
-		return fmt.Errorf("expected %s but was %s", expected, stdout)
+	if !strings.Contains(stdout, expected) {
+		return fmt.Errorf("stdandard out '%s' did not contain '%s'", stdout, expected)
 	}
 	return nil
 }

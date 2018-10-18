@@ -11,7 +11,9 @@ func main() {
 
 	sdkmanDir := env.SdkmanDir()
 
-	exit, err := cli.Sdk(os.Args[1:], sdkmanDir)
+	sdkmanApi := env.SdkmanApi()
+
+	exit, err := cli.Sdk(os.Args[1:], sdkmanDir, sdkmanApi)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

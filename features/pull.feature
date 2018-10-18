@@ -1,4 +1,3 @@
-@wip
 Feature: Pull
 
   As a Software Developer
@@ -27,3 +26,13 @@ Feature: Pull
   explicit command such as `sdk pull` or `sdk update` should be issued in order to fetch remote state. If the sdk
   command has not been updated in while, it should warn the user that their local state is out of date.
 
+  Scenario: The current available Version is pulled
+    Given the internet is reachable
+    And an initialised environment
+    And the installed sdkman version is "5.7.2"
+    And the available sdkman version is "6.0.0"
+    When I enter "sdk pull version"
+    Then the exit code is 0
+    And the pulled version state is "6.0.0"
+    And I see "Pulling available version..."
+    And I see "SDKMAN 6.0.0 now available for installation..."

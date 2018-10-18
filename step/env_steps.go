@@ -11,6 +11,7 @@ import (
 var tmpFolder = "/tmp"
 var prefix = "sdkman-"
 
+var sdkmanApi string
 var sdkmanDir string
 var varDir string
 
@@ -25,7 +26,7 @@ func anInitialisedEnvironment() error {
 	sdkmanDir, err = ioutil.TempDir(tmpFolder, prefix)
 	check(err)
 
-	varDir = sdkmanDir + "/var"
+	varDir = filepath.Join(sdkmanDir, "var")
 	err = os.Mkdir(varDir, 0755)
 	check(err)
 
