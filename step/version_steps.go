@@ -43,6 +43,9 @@ func thePulledVersionStateIs(version string) error {
 }
 
 func VersionFeatureContext(s *godog.Suite) {
+	s.BeforeScenario(func(i interface{}) {
+		apiStub = nil
+	})
 	s.Step(`^the installed sdkman version is "(.*)"$`, theInstalledSdkmanVersionIs)
 	s.Step(`^the available sdkman version is "([^"]*)"$`, theAvailableSdkmanVersionIs)
 	s.Step(`^the pulled version state is "([^"]*)"$`, thePulledVersionStateIs)
