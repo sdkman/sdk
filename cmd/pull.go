@@ -10,6 +10,7 @@ type Remote struct {
 	Version string
 }
 
+// Pull fetches a remote version from a host resource
 func Pull(host string) (error, string) {
 	resp, err := http.Get(host)
 	check(err)
