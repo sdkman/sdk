@@ -26,7 +26,7 @@ func Sdk(args []string, sdkmanDir string, sdkmanApi string) (int, error) {
 			output = cmd.Version(version)
 		case "pull":
 			fmt.Print(txt.Info("Pulling available version...  "))
-			err, output = cmd.Pull(sdkmanApi)
+			output, err = cmd.Pull(sdkmanApi)
 			env.SetRemoteVersion("localhost", output, sdkmanDir)
 			output = txt.InfoF("SDKMAN %s now available for installation...", output)
 		default:
