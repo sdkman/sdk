@@ -2,10 +2,10 @@ package steps
 
 import (
 	"github.com/DATA-DOG/godog"
+	"github.com/sdkman/sdk/env"
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"sdk/env"
 )
 
 var tmpFolder = "/tmp"
@@ -30,7 +30,7 @@ func anInitialisedEnvironment() error {
 	err = os.Mkdir(varDir, 0755)
 	check(err)
 
-	env.SetVersion("0.0.1", sdkmanDir)
+	env.SetLocalVersion("0.0.1", sdkmanDir)
 
 	return nil
 }

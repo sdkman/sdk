@@ -3,17 +3,15 @@ package steps
 import (
 	"fmt"
 	"github.com/DATA-DOG/godog"
-	"io/ioutil"
+	"github.com/sdkman/sdk/env"
 	"net/http"
 	"net/http/httptest"
-	"path/filepath"
-	"sdk/env"
 )
 
 var apiStub *httptest.Server
 
 func theInstalledSdkmanVersionIs(version string) error {
-	env.SetVersion(version, sdkmanDir)
+	env.SetLocalVersion(version, sdkmanDir)
 	return nil
 }
 
@@ -30,14 +28,14 @@ func theAvailableSdkmanVersionIs(version string) error {
 }
 
 func thePulledVersionStateIs(version string) error {
+	env.SetRemoteVersion("localhost", version, sdkmanDir)
+	return nil
+}
 
-	file := filepath.Join(varDir, "localhost", "version")
-	bytes, err := ioutil.ReadFile(file)
-	check(err)
-
-	actual := string(bytes)
-	if actual != version {
-		return fmt.Errorf("Expected %s but was %s", version, actual)
+func theInstalledSdkmanVersionWasUpgradedTo(expected string) error {
+	actual := env.GetLocalVersion(sdkmanDir)
+	if actual != expected {
+		return fmt.Errorf("expected %s but was %s", expected, actual)
 	}
 	return nil
 }
@@ -49,6 +47,7 @@ func VersionFeatureContext(s *godog.Suite) {
 	s.Step(`^the installed sdkman version is "(.*)"$`, theInstalledSdkmanVersionIs)
 	s.Step(`^the available sdkman version is "([^"]*)"$`, theAvailableSdkmanVersionIs)
 	s.Step(`^the pulled version state is "([^"]*)"$`, thePulledVersionStateIs)
+	s.Step(`^the installed sdkman version was upgraded to "([^"]*)"$`, theInstalledSdkmanVersionWasUpgradedTo)
 	s.AfterScenario(func(interface{}, error) {
 		if apiStub != nil {
 			fmt.Print("About to shut down apiStub server...\n")

@@ -5,19 +5,16 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
-func TestSetVersion(t *testing.T) {
-	sdkmanDir, err := ioutil.TempDir("/tmp", "sdkman-")
-	check(err)
+func TestSetLocalVersion(t *testing.T) {
+	sdkmanDir := mkdirs("var")
 	defer os.RemoveAll(sdkmanDir)
 
-	err = os.Mkdir(sdkmanDir+"/var", 0755)
-	check(err)
-
 	expected := "1.0.0"
-	SetVersion(expected, sdkmanDir)
+	SetLocalVersion(expected, sdkmanDir)
 
 	versionFile := filepath.Join(sdkmanDir, "var", "version")
 	content, err := ioutil.ReadFile(versionFile)
@@ -30,19 +27,15 @@ func TestSetVersion(t *testing.T) {
 
 func TestGetVersion(t *testing.T) {
 
-	sdkmanDir, err := ioutil.TempDir("/tmp", "sdkman-")
-	check(err)
+	sdkmanDir := mkdirs("var")
 	defer os.RemoveAll(sdkmanDir)
-
-	err = os.Mkdir(sdkmanDir+"/var", 0755)
-	check(err)
 
 	expected := "1.0.0"
 	versionFile := filepath.Join(sdkmanDir, "var", "version")
-	err = ioutil.WriteFile(versionFile, []byte(expected), os.ModePerm)
+	err := ioutil.WriteFile(versionFile, []byte(expected), os.ModePerm)
 	check(err)
 
-	actual := GetVersion(sdkmanDir)
+	actual := GetLocalVersion(sdkmanDir)
 	assert.Equal(t, expected, actual)
 }
 
@@ -50,8 +43,7 @@ func TestSetRemoteVersion(t *testing.T) {
 	domain := "localhost"
 	expected := "1.0.0"
 
-	sdkmanDir, err := ioutil.TempDir("/tmp", "sdkman-")
-	check(err)
+	sdkmanDir := mkdirs("var")
 	defer os.RemoveAll(sdkmanDir)
 
 	SetRemoteVersion(domain, expected, sdkmanDir)
@@ -63,4 +55,31 @@ func TestSetRemoteVersion(t *testing.T) {
 	actual := string(content)
 
 	assert.Equal(t, expected, actual)
+}
+
+func TestGetRemoteVersion(t *testing.T) {
+	domain := "localhost"
+
+	sdkmanDir := mkdirs("var", domain)
+	defer os.RemoveAll(sdkmanDir)
+
+	expected := "1.0.0"
+	versionFile := filepath.Join(sdkmanDir, "var", domain, "version")
+	err := ioutil.WriteFile(versionFile, []byte(expected), os.ModePerm)
+	check(err)
+
+	actual := GetRemoteVersion(domain, sdkmanDir)
+	assert.Equal(t, expected, actual)
+}
+
+func mkdirs(elems ...string) string {
+	sdkmanDir, err := ioutil.TempDir("/tmp", "sdkman-")
+	check(err)
+
+	elemPath := strings.Join(elems, "/")
+	directory := filepath.Join(sdkmanDir, elemPath)
+	err = os.MkdirAll(directory, 0755)
+	check(err)
+
+	return sdkmanDir
 }

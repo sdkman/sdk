@@ -1,8 +1,6 @@
 package cmd
 
-import (
-	"sdk/txt"
-)
+import "github.com/sdkman/sdk/txt"
 
 // Version formats the version output message
 func Version(version string) string {

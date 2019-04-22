@@ -1,7 +1,7 @@
 Feature: Pull
 
   As a Software Developer
-  I want SDKMAN to be up-to-date
+  I want SDKMAN candidates to be up-to-date
   So that I can access the latest SDKs
 
   https://github.com/sdkman/sdk/issues/4
@@ -26,13 +26,19 @@ Feature: Pull
   explicit command such as `sdk pull` or `sdk update` should be issued in order to fetch remote state. If the sdk
   command has not been updated in while, it should warn the user that their local state is out of date.
 
-  Scenario: The current available Version is pulled
-    Given the internet is reachable
-    And an initialised environment
-    And the installed sdkman version is "5.7.2"
-    And the available sdkman version is "6.0.0"
-    When I enter "sdk pull version"
-    Then the exit code is 0
-    And the pulled version state is "6.0.0"
-    And I see "Pulling available version..."
-    And I see "SDKMAN 6.0.0 now available for installation..."
+#  Scenario: The current available Version is pulled
+#    Given the internet is reachable
+#    And an initialised environment
+#    And the remotely available "java" versions are
+#    | version      |
+#    | 11.0.1-open  |
+#    | 10.0.2-open  |
+#    | 9.0.4-open   |
+#    When I enter "sdk pull java"
+#    Then I see "Pulling available java versions..."
+#    And the locally available "java" vesions are
+#      | version      |
+#      | 11.0.1-open  |
+#      | 10.0.2-open  |
+#      | 9.0.4-open   |
+#    And the exit code is 0

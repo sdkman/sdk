@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"sdk/cli"
-	"sdk/env"
+
+	"github.com/sdkman/sdk/cli"
+	"github.com/sdkman/sdk/env"
 )
 
 func main() {

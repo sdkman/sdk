@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/DATA-DOG/godog"
 	"github.com/kami-zh/go-capturer"
-	"sdk/cli"
+	"github.com/sdkman/sdk/cli"
 	"strings"
 )
 

@@ -2,12 +2,13 @@ package main
 
 import (
 	"flag"
+	"github.com/sdkman/sdk/steps"
+	"os"
+	"testing"
+
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/colors"
 	"github.com/fatih/color"
-	"os"
-	"sdk/steps"
-	"testing"
 )
 
 var opt = godog.Options{Output: colors.Colored(os.Stdout)}

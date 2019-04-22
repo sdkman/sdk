@@ -3,9 +3,10 @@ package cli
 import (
 	"errors"
 	"fmt"
-	"sdk/cmd"
-	"sdk/env"
-	"sdk/txt"
+
+	"github.com/sdkman/sdk/cmd"
+	"github.com/sdkman/sdk/env"
+	"github.com/sdkman/sdk/txt"
 )
 
 // Sdk is the entry point used for delegating to the individual commands
@@ -22,8 +23,10 @@ func Sdk(args []string, sdkmanDir string, sdkmanApi string) (int, error) {
 
 		switch command {
 		case "version":
-			version := env.GetVersion(sdkmanDir)
+			version := env.GetLocalVersion(sdkmanDir)
 			output = cmd.Version(version)
+		case "selfupdate":
+			output = cmd.Selfupdate("6.0.0", sdkmanDir)
 		case "pull":
 			fmt.Print(txt.Info("Pulling available version...  "))
 			output, err = cmd.Pull(sdkmanApi)
