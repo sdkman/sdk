@@ -2,16 +2,9 @@
 
 [![Build Status](https://travis-ci.org/sdkman/sdk.svg?branch=master)](https://travis-ci.org/sdkman/sdk)
 
-This repo is home to the next generation of SDKMAN Command Line Interface written in [Go](https://golang.org/). It marks a complete rewrite of the original CLI written in [bash](https://www.gnu.org/software/bash/).
+**This project has been downgraded to a mere spike, the learnings of which will lead to the next phase of exploration of the CLI. We are also looking at Rust as an alternative implementation solution.**
 
-The benefits of rewriting it in Go can be summarised as follows:
-* no more dependency on the shifting sands of bash/ZSH as foundation
-* allows natively compiled binaries for all popular architecture
-* easier acceptance testing support through [Godog](https://github.com/DATA-DOG/godog), a version of [Cucumber](https://cucumber.io/) written in Go
-* easier unit testing support through [testify](https://github.com/stretchr/testify)
-* statically typed compiled language, allowing bugs to be caught earlier during development
-* allows rethinking of some core behaviours of the current implementation of SDKMAN
-* allows for more collaboration and contribution from the community
+The current bash implementation is still completely fit for purpose and remains in full production use.
 
 ### Living Documentation
 
